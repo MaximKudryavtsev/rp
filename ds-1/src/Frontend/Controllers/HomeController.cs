@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Frontend.Models;
 using System.Net.Http;
+using System.Text;
+using System.Net.Http.Headers;
 
 namespace Frontend.Controllers
 {
@@ -25,8 +27,10 @@ namespace Frontend.Controllers
         private async Task<string> GetResponseString(string url, string data)
         {
             var httpClient = new HttpClient();
-            StringContent content = new StringContent(data);
-
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("text/plain"));
+            data = ("=" + data);
+            var content = new StringContent(data, Encoding.UTF8, "application/x-www-form-urlencoded");
+            
             var response = await httpClient.PostAsync(url, content);
             var contents = await response.Content.ReadAsStringAsync();
 
