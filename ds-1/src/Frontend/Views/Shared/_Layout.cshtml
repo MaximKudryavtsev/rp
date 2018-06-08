@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <title>@ViewData["Title"] - Frontend</title>
 </head>
 <body>
@@ -15,8 +16,21 @@
     <div class="container body-content">
         <h1>Задание #1 Синхронное взаимодействие компонентов</h1>
         @RenderBody()
-        <div>@ViewData["key"] @ViewData["value"]</div>
-        <hr/>
+        <table>
+            <thead>
+                <tr>
+                    <td width="400">Ключ</td>
+                    <td>Значение</td>
+                </tr>
+            </thead>
+            <tbody class="content">
+                <tr>
+                    <td>@ViewData["key"]</td>
+                    <td>@ViewData["value"]</td>
+                </tr>
+            </tbody>
+        </table>
+        <hr />
         <footer>
             Студент: Кудрявцев Максим, ПС-31
         </footer>

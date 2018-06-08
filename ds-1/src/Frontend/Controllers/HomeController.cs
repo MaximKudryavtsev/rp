@@ -21,6 +21,7 @@ namespace Frontend.Controllers
         [HttpGet]
         public IActionResult Upload()
         {
+            ViewBag.Result = new List<string>() { "123" };
             return View();
         }
 
@@ -42,11 +43,10 @@ namespace Frontend.Controllers
         {   //HttpContent content = new StringContent(data);
             //TODO: send data in POST request to backend and read returned id value from response
             string url = "http://127.0.0.1:5000/api/values";
-            string res = GetResponseString(url, data).Result;
-            string result = res;
-            ViewData["key"] = data;
-            ViewData["value"] = result;
-            
+            string result = GetResponseString(url, data).Result;
+
+            ViewData["key"] = result;
+            ViewData["value"] = data;
             return View();
         }
 
@@ -54,5 +54,7 @@ namespace Frontend.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        
     }
 }
